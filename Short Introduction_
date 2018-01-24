@@ -1,6 +1,6 @@
 # Si4703_Arduino
 
-# This Library is for the Si4703, with lot of Functions like RDS, Auto Search, better volume control etc.
+This Library is for the Si4703, with lot of Functions like RDS, Auto Search, better volume control etc.
 
 Short introduction, how connect to an Arduino and run on it:
 
