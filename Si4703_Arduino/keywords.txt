@@ -1,0 +1,67 @@
+#######################################
+# Syntax Coloring Map for Si4705 DSP  #
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)			      #
+#######################################
+
+RDS			 			KEYWORD1
+PICODE		 			KEYWORD1
+PS			 			KEYWORD1
+RT			 			KEYWORD1
+PTY			 			KEYWORD1
+AF						KEYWORD1
+CT			 			KEYWORD1
+TC			 			KEYWORD1
+CLOCK		 			KEYWORD1
+DATE		 			KEYWORD1
+RDSflag					KEYWORD1
+PSflag		 			KEYWORD1
+RTflag		 			KEYWORD1
+PTYflag		 			KEYWORD1
+AFflag					KEYWORD1
+CTflag		 			KEYWORD1
+rssi		 			KEYWORD1
+stereo		 			KEYWORD1
+fmChannel				KEYWORD1
+volume					KEYWORD1
+AFC			 			KEYWORD1
+AF_Zaehler   			KEYWORD1
+AF_trying	 			KEYWORD1
+updateTime				KEYWORD1
+resetPin				KEYWORD1
+rdsPin					KEYWORD1
+regionEuropa			KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)    #
+#######################################
+
+Si4703_Arduino			KEYWORD2
+initRadio				KEYWORD2
+reset					KEYWORD2
+setSterMonBL			KEYWORD2
+setChannel				KEYWORD2
+tuneData				KEYWORD2
+softVolume				KEYWORD2
+setMute					KEYWORD2
+softMute				KEYWORD2
+setVolume				KEYWORD2
+TuneAF					KEYWORD2
+readRDS					KEYWORD2
+decodeAF				KEYWORD2
+decodePS				KEYWORD2
+decodeRT				KEYWORD2
+decodePTY				KEYWORD2
+decodeCT				KEYWORD2
+seekAF					KEYWORD2
+clearRDS				KEYWORD2
+
+#######################################
+# Constants (LITERAL1)                #
+#######################################
+channelBTM   			LITERAL1
+channelTOP   			LITERAL1
+EUROPA					LITERAL1
+USA						LITERAL1
