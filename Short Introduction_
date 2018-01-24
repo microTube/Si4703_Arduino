@@ -1,0 +1,17 @@
+# Si4703_Arduino
+
+# This Library is for the Si4703, with lot of Functions like RDS, Auto Search, better volume control etc.
+
+Short introduction, how connect to an Arduino and run on it:
+
+SCLK to A5
+SDIO to A4
+VCC to 3.3V (Don't connect it to 5V!)
+GND to GND (Ground)
+Reset to D2 (you can change this, however you like)
+GPIO to D3 (you can also change this, hovever you like)
+
+Now open the Demo sketch, upload it and have fun!
+
+If you have questions or suggestions,
+please contact me at: kcs100279@gmail.com
