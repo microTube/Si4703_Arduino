@@ -2,7 +2,7 @@
  * --------FM Radio with Si4703 DSP Tuner-------- *
  * Frequency range:   87.5 - 108.0MHz (in 100kHz) *
  * Volume range:      0 - 15                      *
- * Stations:          20 						  *
+ * Stations:          20                          *
  * RDS:               PS,RT,PTY,AF,CT,Traffic     *
  *                                                *
  * -------------Description of Sketch------------ *
