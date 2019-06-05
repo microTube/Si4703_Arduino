@@ -29,7 +29,7 @@ Si4703_Arduino::Si4703_Arduino ()
 void Si4703_Arduino::initRadio (uint8_t Power)
 {
   int oldVolume = volume;
-  i2cBegin();
+  Wire.begin();
   if(!Power)softVolume(volume,-1);
   pinMode(rdsPin,INPUT_PULLUP);
   reset();
