@@ -2,33 +2,6 @@
 #include <Wire.h>
 #include "Si4703_Arduino.h"
 
-//define release-independent I2C functions
-#if defined(__AVR_ATtiny44__) || defined(__AVR_ATtiny84__) || defined(__AVR_ATtiny45__) || defined(__AVR_ATtiny85__)
-#include <TinyWireM.h>
-#define i2cBegin TinyWireM.begin
-#define i2cBeginTransmission TinyWireM.beginTransmission
-#define i2cEndTransmission TinyWireM.endTransmission
-#define i2cRequestFrom TinyWireM.requestFrom
-#define i2cRead TinyWireM.receive
-#define i2cWrite TinyWireM.send
-#elif ARDUINO >= 100
-#include <Wire.h>
-#define i2cBegin Wire.begin
-#define i2cBeginTransmission Wire.beginTransmission
-#define i2cEndTransmission Wire.endTransmission
-#define i2cRequestFrom Wire.requestFrom
-#define i2cRead Wire.read
-#define i2cWrite Wire.write
-#else
-#include <Wire.h>
-#define i2cBegin Wire.begin
-#define i2cBeginTransmission Wire.beginTransmission
-#define i2cEndTransmission Wire.endTransmission
-#define i2cRequestFrom Wire.requestFrom
-#define i2cRead Wire.receive
-#define i2cWrite Wire.send
-#endif
-
 /*
 Si4703_Arduino Bibliothek
 Version:   0.1-16042017
@@ -36,8 +9,8 @@ Ersteller: ArduinoTube
 
 ###########################FM Radio###########################
 :: Empfang von 87.50 MHz bis 108.00 MHz                     ::
-:: Volle RDS unterstützung (PS,PTY,RT,CT,TP/TA,AF)          ::
-:: Signalstärke und -rauschabstand können ausgelesen werden ::
+:: Volle RDS unterstÃ¼tzung (PS,PTY,RT,CT,TP/TA,AF)          ::
+:: SignalstÃ¤rke und -rauschabstand kÃ¶nnen ausgelesen werden ::
 :: ...                                                      ::
 **************************************************************
 */
@@ -146,11 +119,11 @@ void Si4703_Arduino::setProperties (void)
 
 /**********************************************************
 *-------------Si4703_Arduino set St/Mo Blend--------------*
-// Quality_ = 0 --> RSSI: 31 - 49 dBµV :: Default value  //
-// Quality_ = 1 --> RSSI: 37 - 55 dBµV :: +6 dBµV higher //
-// Quality_ = 2 --> RSSI: 19 - 37 dBµV :: -12dBµV lower  //
-// Quality_ = 3 --> RSSI: 25 - 43 dBµV :: -6 dBµV lower  //
-// Quality_ = 4 --> RSSI: xx - xx dBµV :: always Mono    //
+// Quality_ = 0 --> RSSI: 31 - 49 dBÂµV :: Default value  //
+// Quality_ = 1 --> RSSI: 37 - 55 dBÂµV :: +6 dBÂµV higher //
+// Quality_ = 2 --> RSSI: 19 - 37 dBÂµV :: -12dBÂµV lower  //
+// Quality_ = 3 --> RSSI: 25 - 43 dBÂµV :: -6 dBÂµV lower  //
+// Quality_ = 4 --> RSSI: xx - xx dBÂµV :: always Mono    //
 *---------------------------------------------------------* 
 **********************************************************/
 void Si4703_Arduino::setSterMonBL (uint8_t SterMonBL)
@@ -265,15 +238,15 @@ void Si4703_Arduino::softVolume (uint8_t volume, int dir)
 ********************************************************/
 byte Si4703_Arduino::updateRegisters(void) 
 {
-  i2cBeginTransmission(Si4703_Addr);
+  Wire.beginTransmission(Si4703_Addr);
   for(int regSpot = 0x02 ; regSpot < 0x08 ; regSpot++) 
   {
     byte high_byte = si4703_registers[regSpot] >> 8;
     byte low_byte  = si4703_registers[regSpot] & 0x00FF;
-    i2cWrite(high_byte);
-    i2cWrite(low_byte);
+    Wire.write(high_byte);
+    Wire.write(low_byte);
   }
-  byte ack = i2cEndTransmission();
+  byte ack = Wire.endTransmission();
   i2cError = ack ? true : false;
   if(ack != 0)return(false);
   return(true);
@@ -285,12 +258,12 @@ byte Si4703_Arduino::updateRegisters(void)
 void Si4703_Arduino::readRegisters(void)
 {
   int x = 0x0A;
-  i2cRequestFrom(Si4703_Addr, 32);
+  Wire.requestFrom(Si4703_Addr, 32);
   while(true)
   {
 	if(x == 0x10) x = 0; 
-    si4703_registers[x] = i2cRead() << 8;
-    si4703_registers[x] |= i2cRead();
+    si4703_registers[x] = Wire.read() << 8;
+    si4703_registers[x] |= Wire.read();
 	x++;
 	if(x == 0x0A)break;
   }
@@ -354,14 +327,14 @@ boolean Si4703_Arduino::readRDS (void)
 		  return(true);
 		 }
 		 runDecodePS = false;// Hiermit wird verhindert dass beim dynamischen Sendernamen
-							 // es zu Überschneidungen kommt (for no overcrosses of dynamic PS)
+							 // es zu Ãœberschneidungen kommt (for no overcrosses of dynamic PS)
 	   }
    }
    return (false);
 }
 
 /*******************************************************
-*----------------Überprüfe nach Fehlern----------------* 
+*----------------ÃœberprÃ¼fe nach Fehlern----------------* 
 ********************************************************/
 int Si4703_Arduino::checkRDSErr (void)
 {
