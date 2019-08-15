@@ -70,8 +70,9 @@ void Si4703_Arduino::reset (void)
 {
   pinMode(resetPin, OUTPUT);
   digitalWrite(resetPin, LOW);
-  delay(1);
+  delay(200);
   digitalWrite(resetPin, HIGH);
+  delay(500);
 }
 
 /*******************************************************
